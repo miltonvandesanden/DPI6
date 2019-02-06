@@ -5,38 +5,45 @@ package model.bank;
  *  to a loan request of the specific client
  * 
  */
-public class BankInterestReply {
-
+public class BankInterestReply
+{
     private double interest; // the loan interest
-    private String bankId; // the nunique quote Id
+    private String bankId; // the unique quote Id
     
-    public BankInterestReply() {
+    public BankInterestReply()
+    {
         this.interest = 0;
         this.bankId = "";
     }
     
-    public BankInterestReply(double interest, String quoteId) {
+    public BankInterestReply(double interest, String quoteId)
+    {
         this.interest = interest;
         this.bankId = quoteId;
     }
 
-    public double getInterest() {
+    public double getInterest()
+    {
         return interest;
     }
 
-    public void setInterest(double interest) {
+    public void setInterest(double interest)
+    {
         this.interest = interest;
     }
 
-    public String getQuoteId() {
+    public String getQuoteId()
+    {
         return bankId;
     }
 
-    public void setQuoteId(String quoteId) {
+    public void setQuoteId(String quoteId)
+    {
         this.bankId = quoteId;
     }
 
-    public String toString() {
+    public String toString()
+    {
         return "quote=" + this.bankId + " interest=" + this.interest;
     }
 }

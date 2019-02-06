@@ -19,15 +19,12 @@ import javax.swing.border.EmptyBorder;
 import messaging.requestreply.RequestReply;
 import model.loan.*;
 
-public class LoanClientFrame extends JFrame {
-
-	/**
-	 * 
-	 */
+public class LoanClientFrame extends JFrame
+{
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfSSN;
-	private DefaultListModel<RequestReply<LoanRequest,LoanReply>> listModel = new DefaultListModel<RequestReply<LoanRequest,LoanReply>>();
+	private DefaultListModel<RequestReply<LoanRequest,LoanReply>> listModel = new DefaultListModel<>();
 	private JList<RequestReply<LoanRequest,LoanReply>> requestReplyList;
 
 	private JTextField tfAmount;
@@ -38,7 +35,8 @@ public class LoanClientFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoanClientFrame() {
+	public LoanClientFrame()
+	{
 		setTitle("Loan Client");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,17 +103,21 @@ public class LoanClientFrame extends JFrame {
 		tfTime.setColumns(10);
 		
 		JButton btnQueue = new JButton("send loan request");
-		btnQueue.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int ssn = Integer.parseInt(tfSSN.getText());
-				int amount = Integer.parseInt(tfAmount.getText());
-				int time = Integer.parseInt(tfTime.getText());				
-				
-				LoanRequest request = new LoanRequest(ssn,amount,time);
-				listModel.addElement( new RequestReply<LoanRequest,LoanReply>(request, null));	
-				// to do:  send the JMS with request to Loan Broker
-			}
-		});
+
+		btnQueue.addActionListener
+		(
+			arg0 ->
+			{
+		        int ssn = Integer.parseInt(tfSSN.getText());
+	            int amount = Integer.parseInt(tfAmount.getText());
+	            int time = Integer.parseInt(tfTime.getText());
+
+	            LoanRequest request = new LoanRequest(ssn,amount,time);
+	            listModel.addElement(new RequestReply<>(request, null));
+	            // todo:  send the JMS with request to Loan Broker
+	        }
+        );
+
 		GridBagConstraints gbc_btnQueue = new GridBagConstraints();
 		gbc_btnQueue.insets = new Insets(0, 0, 5, 5);
 		gbc_btnQueue.gridx = 2;
@@ -131,9 +133,8 @@ public class LoanClientFrame extends JFrame {
 		gbc_scrollPane.gridy = 4;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
-		requestReplyList = new JList<RequestReply<LoanRequest,LoanReply>>(listModel);
-		scrollPane.setViewportView(requestReplyList);	
-       
+		requestReplyList = new JList<>(listModel);
+		scrollPane.setViewportView(requestReplyList);
 	}
 	
 	/**
@@ -142,29 +143,37 @@ public class LoanClientFrame extends JFrame {
 	 * @param request
 	 * @return
 	 */
-   private RequestReply<LoanRequest,LoanReply> getRequestReply(LoanRequest request){    
-     
-     for (int i = 0; i < listModel.getSize(); i++){
+   private RequestReply<LoanRequest,LoanReply> getRequestReply(LoanRequest request)
+   {
+     for(int i = 0; i < listModel.getSize(); i++)
+     {
     	 RequestReply<LoanRequest,LoanReply> rr =listModel.get(i);
-    	 if (rr.getRequest() == request){
+
+    	 if(rr.getRequest() == request)
+    	 {
     		 return rr;
     	 }
      }
      
      return null;
    }
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+
+   public static void main(String[] args)
+   {
+		EventQueue.invokeLater
+		(
+			() ->
+			{
+				try
+				{
 					LoanClientFrame frame = new LoanClientFrame();
-					
 					frame.setVisible(true);
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
-		});
+		);
 	}
 }

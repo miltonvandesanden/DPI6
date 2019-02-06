@@ -10,35 +10,40 @@ package messaging.requestreply;
  * @param <REQUEST>
  * @param <REPLY>
  */
-public class RequestReply<REQUEST,REPLY> {
-	
+public class RequestReply<REQUEST,REPLY>
+{
 	private REQUEST request;
 	private REPLY reply;
 	
-	public RequestReply(REQUEST request,  REPLY reply) {
+	public RequestReply(REQUEST request,  REPLY reply)
+	{
 		setRequest(request);
 		setReply(reply);
 	}	
 	
-	public REQUEST getRequest() {
+	public REQUEST getRequest()
+	{
 		return request;
 	}
 	
-	private void setRequest(REQUEST request) {
+	private void setRequest(REQUEST request)
+	{
 		this.request = request;
 	}
 	
-	public REPLY getReply() {
+	public REPLY getReply()
+	{
 		return reply;
 	}
 	
-	public void setReply(REPLY reply) {
+	public void setReply(REPLY reply)
+	{
 		this.reply = reply;
 	}
 	
 	@Override
-	public String toString() {
+	public String toString()
+	{
 	   return request.toString() + "  --->  " + ((reply!=null)?reply.toString():"waiting for reply...");
 	}
-	
 }

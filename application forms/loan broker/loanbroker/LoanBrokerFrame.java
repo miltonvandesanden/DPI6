@@ -16,34 +16,38 @@ import model.bank.*;
 import model.loan.LoanRequest;
 
 
-public class LoanBrokerFrame extends JFrame {
-
-	/**
-	 * 
-	 */
+public class LoanBrokerFrame extends JFrame
+{
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private DefaultListModel<JListLine> listModel = new DefaultListModel<JListLine>();
+	private DefaultListModel<JListLine> listModel = new DefaultListModel<>();
 	private JList<JListLine> list;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoanBrokerFrame frame = new LoanBrokerFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater
+		(
+			() ->
+			{
+               try
+               {
+                   LoanBrokerFrame frame = new LoanBrokerFrame();
+                   frame.setVisible(true);
+               }
+               catch (Exception e)
+               {
+                   e.printStackTrace();
+               }
+            }
+       );
 	}
 
 
 	/**
 	 * Create the frame.
 	 */
-	public LoanBrokerFrame() {
+	public LoanBrokerFrame()
+	{
 		setTitle("Loan Broker");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -66,15 +70,18 @@ public class LoanBrokerFrame extends JFrame {
 		gbc_scrollPane.gridy = 0;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
-		list = new JList<JListLine>(listModel);
+		list = new JList<>(listModel);
 		scrollPane.setViewportView(list);		
 	}
 	
-	 private JListLine getRequestReply(LoanRequest request){    
-	     
-	     for (int i = 0; i < listModel.getSize(); i++){
+	 private JListLine getRequestReply(LoanRequest request)
+	 {
+	     for(int i = 0; i < listModel.getSize(); i++)
+	     {
 	    	 JListLine rr =listModel.get(i);
-	    	 if (rr.getLoanRequest() == request){
+
+	    	 if(rr.getLoanRequest() == request)
+	    	 {
 	    		 return rr;
 	    	 }
 	     }
@@ -82,26 +89,30 @@ public class LoanBrokerFrame extends JFrame {
 	     return null;
 	   }
 	
-	public void add(LoanRequest loanRequest){		
+	public void add(LoanRequest loanRequest)
+	{
 		listModel.addElement(new JListLine(loanRequest));		
 	}
-	
 
-	public void add(LoanRequest loanRequest,BankInterestRequest bankRequest){
+	public void add(LoanRequest loanRequest,BankInterestRequest bankRequest)
+	{
 		JListLine rr = getRequestReply(loanRequest);
-		if (rr!= null && bankRequest != null){
+
+		if(rr!= null && bankRequest != null)
+		{
 			rr.setBankRequest(bankRequest);
             list.repaint();
 		}		
 	}
 	
-	public void add(LoanRequest loanRequest, BankInterestReply bankReply){
+	public void add(LoanRequest loanRequest, BankInterestReply bankReply)
+	{
 		JListLine rr = getRequestReply(loanRequest);
-		if (rr!= null && bankReply != null){
+
+		if(rr!= null && bankReply != null)
+		{
 			rr.setBankReply(bankReply);;
             list.repaint();
 		}		
 	}
-
-
 }

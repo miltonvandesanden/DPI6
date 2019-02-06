@@ -14,43 +14,50 @@ import model.bank.*;
  * @author 884294
  *
  */
-class JListLine {
-	
+class JListLine
+{
 	private LoanRequest loanRequest;
 	private BankInterestRequest bankRequest;
 	private BankInterestReply bankReply;
 
-	public JListLine(LoanRequest loanRequest) {
+	public JListLine(LoanRequest loanRequest)
+	{
 		this.setLoanRequest(loanRequest);
 	}
 
-	public LoanRequest getLoanRequest() {
+	public LoanRequest getLoanRequest()
+	{
 		return loanRequest;
 	}
 
-	public void setLoanRequest(LoanRequest loanRequest) {
+	public void setLoanRequest(LoanRequest loanRequest)
+	{
 		this.loanRequest = loanRequest;
 	}
 
-	public BankInterestRequest getBankRequest() {
+	public BankInterestRequest getBankRequest()
+	{
 		return bankRequest;
 	}
 
-	public void setBankRequest(BankInterestRequest bankRequest) {
+	public void setBankRequest(BankInterestRequest bankRequest)
+	{
 		this.bankRequest = bankRequest;
 	}
 
-	public BankInterestReply getBankReply() {
+	public BankInterestReply getBankReply()
+	{
 		return bankReply;
 	}
 
-	public void setBankReply(BankInterestReply bankReply) {
+	public void setBankReply(BankInterestReply bankReply)
+	{
 		this.bankReply = bankReply;
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return loanRequest.toString() + " || " + ((bankReply != null) ? bankReply.toString() : "waiting for reply...");
 	}
-
 }

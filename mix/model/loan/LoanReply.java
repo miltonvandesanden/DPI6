@@ -5,40 +5,48 @@ package model.loan;
  * This class stores all information about a bank offer
  * as a response to a client loan request.
  */
-public class LoanReply {
+public class LoanReply
+{
+    private double interest; // the interest that the bank offers
+    private String bankID; // the unique quote identification
 
-        private double interest; // the interest that the bank offers
-        private String bankID; // the unique quote identification
-
-    public LoanReply() {
+    public LoanReply()
+    {
         super();
         this.interest = 0;
         this.bankID = "";
     }
-    public LoanReply(double interest, String quoteID) {
+
+    public LoanReply(double interest, String quoteID)
+    {
         super();
         this.interest = interest;
         this.bankID = quoteID;
     }
 
-    public double getInterest() {
+    public double getInterest()
+    {
         return interest;
     }
 
-    public void setInterest(double interest) {
+    public void setInterest(double interest)
+    {
         this.interest = interest;
     }
 
-    public String getQuoteID() {
+    public String getQuoteID()
+    {
         return bankID;
     }
 
-    public void setQuoteID(String quoteID) {
+    public void setQuoteID(String quoteID)
+    {
         this.bankID = quoteID;
     }
     
     @Override
-    public String toString(){
+    public String toString()
+    {
         return " interest="+String.valueOf(interest) + " quoteID="+String.valueOf(bankID);
     }
 }
