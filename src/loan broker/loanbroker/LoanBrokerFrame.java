@@ -42,7 +42,6 @@ public class LoanBrokerFrame extends JFrame
        );
 	}
 
-
 	/**
 	 * Create the frame.
 	 */
@@ -94,7 +93,7 @@ public class LoanBrokerFrame extends JFrame
 		listModel.addElement(new JListLine(loanRequest));		
 	}
 
-	public void add(LoanRequest loanRequest,BankInterestRequest bankRequest)
+	public void add(LoanRequest loanRequest, BankInterestRequest bankRequest)
 	{
 		JListLine rr = getRequestReply(loanRequest);
 

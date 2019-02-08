@@ -112,9 +112,10 @@ public class LoanClientFrame extends JFrame
 	            int amount = Integer.parseInt(tfAmount.getText());
 	            int time = Integer.parseInt(tfTime.getText());
 
-	            LoanRequest request = new LoanRequest(ssn,amount,time);
-	            listModel.addElement(new RequestReply<>(request, null));
+	            LoanRequest loanRequest = new LoanRequest(ssn, amount, time);
+	            listModel.addElement(new RequestReply<>(loanRequest, null));
 	            // todo:  send the JMS with request to Loan Broker
+
 	        }
         );
 
@@ -136,7 +137,27 @@ public class LoanClientFrame extends JFrame
 		requestReplyList = new JList<>(listModel);
 		scrollPane.setViewportView(requestReplyList);
 	}
-	
+
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater
+		(
+			() ->
+			{
+				try
+				{
+					LoanClientFrame frame = new LoanClientFrame();
+					frame.setVisible(true);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		);
+	}
+
+
 	/**
 	 * This method returns the RequestReply line that belongs to the request from requestReplyList (JList). 
 	 * You can call this method when an reply arrives in order to add this reply to the right request in requestReplyList.
@@ -157,23 +178,4 @@ public class LoanClientFrame extends JFrame
      
      return null;
    }
-
-   public static void main(String[] args)
-   {
-		EventQueue.invokeLater
-		(
-			() ->
-			{
-				try
-				{
-					LoanClientFrame frame = new LoanClientFrame();
-					frame.setVisible(true);
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		);
-	}
 }
